@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: ./website
+    # Set to reload, but should remove at somepoint if PROD
+    command: gunicorn --reload -c python:config.gunicorn startup:app
+    expose:
+      - 8000
+    env_file:
+      - ./website/.env
+      - ./website/.flaskenv
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 80:80 # HTTP
+    depends_on:
+      - web
+
+volumes:
+  static_volume:

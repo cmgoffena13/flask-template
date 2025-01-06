@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+        {% endblock %}
+
+        {% if title %}
+            <title>{% block title %}{% endblock %}</title>
+        {% else %}
+            <title>{{ 'Welcome to my website!' }}</title>
+        {% endif %}
+
+
+    {% if config['ANALYTICS_GOOGLE_UA'] %}
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', "{{ config['ANALYTICS_GOOGLE_UA'] }}", 'auto');
+        ga('send', 'pageview');
+        </script>
+    {% endif %}
+
+    </head>
+
+    <body>
+        {% block header %}{% endblock %}
+        <!-- Get some space from the navbar -->
+        <br>
+        <br>
+        <main class="container">
+            <div class="md-margin-top">{% block heading %}{% endblock %}</div>
+            {% block body %}{% endblock %}
+        </main>
+        
+    <footer class="footer text-center">
+        <div class="container">
+            <ul class="list-inline">
+                <li class="text-muted">Personal Website &copy; CURRENT_YEAR()</li>
+                {% block footer %}{% endblock %}
+            </ul>
+        </div>
+    </footer>
+
+{% block app_scripts %}
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+{% endblock %}
+    </body>
+</html>

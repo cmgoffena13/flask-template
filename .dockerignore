@@ -1,0 +1,6 @@
+__pycache__/
+logs/
+docker_build.ps1
+docker_dev_run.ps1
+docker_prod_run.ps1
+.git*
